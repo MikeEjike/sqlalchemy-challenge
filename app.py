@@ -111,7 +111,7 @@ def stats(start=None, end=None):
     
     session = Session(engine)
 
-    desc = [func.max(measure.tobs), func.min(measure.tobs), func.avg(measure.tobs)]
+    desc = [func.min(measure.tobs), func.avg(measure.tobs), func.max(measure.tobs)]
 
     if not end:
 
@@ -122,11 +122,11 @@ def stats(start=None, end=None):
 
         # Unravel results into a 1D array and convert to a list
         temp = list(np.ravel(data))
-        return jsonify(temp)
+        return jsonify(temp=temp)
 
 
     # calculate TMIN, TAVG, TMAX with start and stop
-    data = session.query(*desc).filter(measure.date >= start).filter(measure.date <= end).all()
+    data = session.query(*desc).filter(measure.date >= '2016-08-23').filter(measure.date <= '2017-08-23').all()
     
     session.close()
 
