@@ -47,6 +47,7 @@ def welcome():
         f"/api/v1.0/precipitation<br/>"
         f"/api/v1.0/stations<br/>"
         f"/api/v1.0/tobs<br/>"
+        f"/api/v1.0/temp/2016-08-23/2017-08-23<br/>"
         f"/api/v1.0/temp/start/end"
     )
 
@@ -122,11 +123,11 @@ def stats(start=None, end=None):
 
         # Unravel results into a 1D array and convert to a list
         temp = list(np.ravel(data))
-        return jsonify(temp=temp)
+        return jsonify(temp)
 
 
     # calculate TMIN, TAVG, TMAX with start and stop
-    data = session.query(*desc).filter(measure.date >= '2016-08-23').filter(measure.date <= '2017-08-23').all()
+    data = session.query(*desc).filter(measure.date >= start).filter(measure.date <= end).all()
     
     session.close()
 
