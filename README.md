@@ -1,4 +1,4 @@
-# sqlalchemy-challenge
+# Climate Analysis
 
 ## Step 1 - Climate Analysis and Exploration
 
